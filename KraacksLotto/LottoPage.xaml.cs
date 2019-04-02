@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +22,15 @@ namespace KraacksLotto
     /// <summary>
     /// Interaction logic for LottoPage.xaml
     /// </summary>
+
     public partial class LottoPage : INotifyPropertyChanged
     {
+        RowGenerator rg = new RowGenerator();
+        NormalLotto nl = new NormalLotto();
+        JokerLotto jl = new JokerLotto();
+        private int[][] ticket;
+        private int[][] jokerticket;
+
         private bool isClear = true;
         private List<int> _lottoWinnigs = new List<int>();
         public List<int> LottoWinnigs
@@ -47,7 +56,19 @@ namespace KraacksLotto
 
         private void StartLotto_Click(object sender, RoutedEventArgs e)
         {
-            GenerateWinningNumbers();
+            ticket = rg.GenerateTicket();
+            rg.GenerateNumbers(ticket);
+            nl.StreamWriter("Kupon.txt", true, ticket);
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ticket = rg.GenerateTicket();
+            rg.GenerateNumbers(ticket);
+            jokerticket = rg.JokerNumbers();
+            jl.StreamWriter("JokerKupon.txt", true, ticket);
+            jl.StreamWriterJoker("JokerKupon.txt", true, jokerticket);
         }
 
         public void ClearLotto()
@@ -56,7 +77,7 @@ namespace KraacksLotto
         }
         public void GenerateWinningNumbers()
         {
-            int number;   
+            int number;
             for (int i = 0; i < 7; i++)
             {
                 number = rng.Next(1, 36);
@@ -68,7 +89,5 @@ namespace KraacksLotto
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }
