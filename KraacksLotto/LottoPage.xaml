@@ -36,14 +36,16 @@
             <StackPanel DockPanel.Dock="Right" Margin="10">
                 <TextBlock Text="Menu" FontWeight="Bold" Foreground="#FFFF5100"/>
 
-                <Button Content="New Numbers" Width="75" Click="StartLotto_Click"/>                
-                <Button Content="Joker Tal" Width="75" Click="Button_Click"/>
-                <Button Content="Clear" Width="75"/>
-                
+                <Button Content="NormalLotto" Width="75" Click="StartLotto_Click"/>                
+                <Button Content="JokerLotto" Width="75" Click="Button_Click"/>
+                <Button x:Name="VisNormal" Content="Vis Normal" Width="75" Click="VisNormal_Click"/>
+                <Button x:Name="VisJoker" Content="Vis Joker" Height="21" Width="74" Click="VisJoker_Click"/>
+
 
             </StackPanel>
             <StackPanel DockPanel.Dock="Left" >
-                <ListBox Name="LottoList" HorizontalAlignment="Stretch"  >
+                <ListBox Name="LottoBox" HorizontalAlignment="Stretch" Width="640" Height="300" >
+                    
                     
                 </ListBox>
             </StackPanel>

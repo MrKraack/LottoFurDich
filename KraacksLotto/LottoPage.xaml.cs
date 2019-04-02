@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -23,28 +24,13 @@ namespace KraacksLotto
     /// Interaction logic for LottoPage.xaml
     /// </summary>
 
-    public partial class LottoPage : INotifyPropertyChanged
+    public partial class LottoPage
     {
         RowGenerator rg = new RowGenerator();
         NormalLotto nl = new NormalLotto();
         JokerLotto jl = new JokerLotto();
         private int[][] ticket;
         private int[][] jokerticket;
-
-        private bool isClear = true;
-        private List<int> _lottoWinnigs = new List<int>();
-        public List<int> LottoWinnigs
-        {
-            get { return _lottoWinnigs; }
-            set
-            {
-                if (_lottoWinnigs != value)
-                {
-                    _lottoWinnigs = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         Random rng = new Random();
 
@@ -71,23 +57,24 @@ namespace KraacksLotto
             jl.StreamWriterJoker("JokerKupon.txt", true, jokerticket);
         }
 
-        public void ClearLotto()
+        private void VisJoker_Click(object sender, RoutedEventArgs e)
         {
-            LottoWinnigs.Clear();
-        }
-        public void GenerateWinningNumbers()
-        {
-            int number;
-            for (int i = 0; i < 7; i++)
+            StreamReader sr = new StreamReader("JokerKupon.txt");
+            string line;
+            while ((line = sr.ReadLine()) != null)
             {
-                number = rng.Next(1, 36);
-                LottoWinnigs.Add(number);
+                LottoBox.Items.Add(line);
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+
+        private void VisNormal_Click(object sender, RoutedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            StreamReader sr = new StreamReader("Kupon.txt");
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                LottoBox.Items.Add(line);
+            }
         }
     }
 }
