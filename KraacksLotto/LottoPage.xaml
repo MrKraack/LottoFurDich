@@ -1,0 +1,55 @@
+﻿<Page x:Class="KraacksLotto.LottoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KraacksLotto"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LottoPage">
+
+    <Grid Background="#FF555555">
+        <DockPanel Margin="50,10,10,10">
+            <StackPanel DockPanel.Dock="Top" Margin="10">
+                <GroupBox Header="Winning Numbers" Height="100" BorderBrush="{x:Null}" Foreground="#FFFF5100" FontSize="14">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Name="Draw1" Text="{Binding Path=LottoWinnigs, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
+                        <TextBox Grid.Column="1" Name="Draw2" />
+                        <TextBox Grid.Column="2" Name="Draw3" />
+                        <TextBox Grid.Column="3" Name="Draw4" />
+                        <TextBox Grid.Column="4" Name="Draw5" />
+                        <TextBox Grid.Column="5" Name="Draw6" />
+                        <TextBox Grid.Column="6" Name="Draw7"/>
+
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" Margin="10">
+                <TextBlock Text="Menu" FontWeight="Bold" Foreground="#FFFF5100"/>
+
+                <Button Content="New Numbers" Width="75" Click="StartLotto_Click"/>                
+                <Button Content="Joker Tal" Width="75" Click="Button_Click"/>
+                <Button Content="Clear" Width="75"/>
+                
+
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Left" >
+                <ListBox Name="LottoList" HorizontalAlignment="Stretch"  >
+                    
+                </ListBox>
+            </StackPanel>
+            
+        </DockPanel>
+        
+
+    </Grid>
+</Page>
