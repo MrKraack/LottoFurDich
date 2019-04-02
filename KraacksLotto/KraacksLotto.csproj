@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IRow.cs" />
+    <Compile Include="JokerLotto.cs" />
+    <Compile Include="NormalLotto.cs" />
+    <Compile Include="Print.cs" />
+    <Compile Include="RowGenerator.cs" />
     <Compile Include="UMAPage.xaml.cs">
       <DependentUpon>UMAPage.xaml</DependentUpon>
     </Compile>

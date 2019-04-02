@@ -23,24 +23,6 @@ namespace KraacksLotto
     public partial class LottoPage : INotifyPropertyChanged
     {
         private bool isClear = true;
-
-
-        private int _ChickIFucked = 5;
-        public int ChicksIFucked
-        {
-            get { return _ChickIFucked; }
-            set
-            {
-                if (_ChickIFucked != value)
-                {
-                    _ChickIFucked = value;
-                    OnPropertyChanged();
-
-                }
-            }
-
-        }
-
         private List<int> _lottoWinnigs = new List<int>();
         public List<int> LottoWinnigs
         {
@@ -51,14 +33,11 @@ namespace KraacksLotto
                 {
                     _lottoWinnigs = value;
                     OnPropertyChanged();
-
                 }
             }
         }
 
-
         Random rng = new Random();
-
 
         public LottoPage()
         {
@@ -68,47 +47,21 @@ namespace KraacksLotto
 
         private void StartLotto_Click(object sender, RoutedEventArgs e)
         {
-            //if (isClear == false)
-            //{
-
-            //    ClearLotto();
-
-            //    isClear = true;
-
-            //}
             GenerateWinningNumbers();
-            
-
-
-
-            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
         public void ClearLotto()
         {
             LottoWinnigs.Clear();
         }
         public void GenerateWinningNumbers()
         {
-
-            int number;
-                
-
+            int number;   
             for (int i = 0; i < 7; i++)
             {
                 number = rng.Next(1, 36);
                 LottoWinnigs.Add(number);
-                
-
-
             }
-
-
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
